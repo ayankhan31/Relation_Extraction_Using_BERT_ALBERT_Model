@@ -1,9 +1,12 @@
 import torch
 import torch.nn as nn
-from transformers.modeling_bert import BertPreTrainedModel, BertModel, BertConfig
+# from transformers.modeling_bert import BertPreTrainedModel, BertModel, BertConfig
+from transformers.models.bert.modeling_bert import BertPreTrainedModel, BertModel, BertConfig
+
 from torchcrf import CRF
 from .module import IntentClassifier, SlotClassifier
 
+# pre train and fine tuning of bert model.
 
 class JointBERT(BertPreTrainedModel):
     def __init__(self, config, args, intent_label_lst, slot_label_lst):
@@ -19,7 +22,8 @@ class JointBERT(BertPreTrainedModel):
         if args.use_crf:
             self.crf = CRF(num_tags=self.num_slot_labels, batch_first=True)
 
-    def forward(self, input_ids, attention_mask, token_type_ids, intent_label_ids, slot_labels_ids):
+    #sending the tokens to the next encoder
+    def forward(self, input_ids, attention_mask, token_type_ids, intent_label_ids, slot_labels_ids): 
         outputs = self.bert(input_ids, attention_mask=attention_mask,
                             token_type_ids=token_type_ids)  # sequence_output, pooled_output, (hidden_states), (attentions)
         sequence_output = outputs[0]
@@ -29,7 +33,8 @@ class JointBERT(BertPreTrainedModel):
         slot_logits = self.slot_classifier(sequence_output)
 
         total_loss = 0
-        # 1. Intent Softmax
+        # probability which is more for the tokens
+        # 1. Intent Softmax 
         if intent_label_ids is not None:
             if self.num_intent_labels == 1:
                 intent_loss_fct = nn.MSELoss()
@@ -38,7 +43,7 @@ class JointBERT(BertPreTrainedModel):
                 intent_loss_fct = nn.CrossEntropyLoss()
                 intent_loss = intent_loss_fct(intent_logits.view(-1, self.num_intent_labels), intent_label_ids.view(-1))
             total_loss += intent_loss
-
+        
         # 2. Slot Softmax
         if slot_labels_ids is not None:
             if self.args.use_crf:

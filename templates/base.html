@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relation Extraction</title>
+    <!------<title> Website Layout | CodingLab</title>------>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/styles.css') }}">
+    
+    {% block head %}{% endblock %}
+
+   </head>
+<body>
+  <nav>
+    <div class="menu">
+      <div class="logo">
+        <span class="svg-icon"><img src="{{ url_for('static', filename='images/airplane.svg') }}" alt=""></span>
+        <a href="#">FlyConnective</a>
+      </div>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/getrelation">Relation</a></li>
+        <li><a href="/contact">Contact</a></li>
+        <li><a href="https://drive.google.com/drive/folders/1ZQ9j2bx7jWf5lqDIuTSPFH6lebTp8acl?usp=share_link">About</a></li>
+      </ul>
+    </div>
+  </nav>
+  {% block body %}
+  
+  {% endblock %}
+
+ 
+
+
+</body>
+</html>

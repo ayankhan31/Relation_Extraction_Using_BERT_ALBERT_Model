@@ -22,7 +22,7 @@ class InputExample(object):
         slot_labels: (Optional) list. The slot labels of the example.
     """
 
-    def __init__(self, guid, words, intent_label=None, slot_labels=None):
+    def __init__(self, guid, words, intent_label=None, slot_labels=None): #constructor
         self.guid = guid
         self.words = words
         self.intent_label = intent_label
@@ -121,8 +121,9 @@ processors = {
     "snips": JointProcessor
 }
 
-
-def convert_examples_to_features(examples, max_seq_len, tokenizer,
+#passing hyper parameters in this function
+#preprocessing the data, before sending data to bert. 
+def convert_examples_to_features(examples, max_seq_len, tokenizer, 
                                  pad_token_label_id=-100,
                                  cls_token_segment_id=0,
                                  pad_token_segment_id=0,

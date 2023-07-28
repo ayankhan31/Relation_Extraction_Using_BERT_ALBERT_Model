@@ -203,7 +203,7 @@ def predict(pred_config):
                 if pred == 'O':
                     line = line + word + " "
                 else:
-                    line = line + "[{}:{}] ".format(word, pred)
+                    line = line + "[{}:{}] \n".format(word, pred)
             f.write("<{}> -> {}\n".format(intent_label_lst[intent_pred], line.strip()))
 
     logger.info("Prediction Done!")

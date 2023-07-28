@@ -1,0 +1,46 @@
+
+
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div class="center">
+  <label for="images" class="drop-container">
+    <span class="drop-title">Drop files here</span>
+
+    <form action="{{ url_for('getrelation') }}" method="POST" enctype="multipart/form-data">
+      <input type="file" id="images" name="file" accept=".txt" required>
+      <!-- <input type="submit" value="Predict"> -->
+      <br>
+      <br>
+      <button type="submit" class="btn btn-outline-success">Predict</button>
+
+    </form>
+    <!-- <input type="file" id="images" accept=".txt" required> -->
+  </label>
+</div>
+
+
+
+<!-- <div class="center"> 
+  <form action="{{ url_for('getrelation') }}" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".txt">
+    <input type="submit" value="Predict">
+</form>
+</div> -->
+{% endblock %}
+
+
+
+
+<!-- <div class="center">
+
+  
+  <form action="{{ url_for('getrelation') }}" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".txt">
+    <input type="submit" value="Predict">
+</form>
+</div> -->

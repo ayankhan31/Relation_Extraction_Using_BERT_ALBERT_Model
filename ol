@@ -1,0 +1,2 @@
+<atis_flight> -> On [march:B-depart_date.month_name] [first:B-depart_date.day_number] I need a flight going from [vizag:B-fromloc.airport_code] to [berhampur:B-toloc.city_name]
+<atis_flight> -> I would like a flight from [tirupati:B-fromloc.city_name] to [delhi:B-toloc.city_name] for [April:B-depart_date.month_name] [First:B-depart_date.day_number] on [indigo:B-airline_name] [airlines:I-airline_name]
